@@ -11,7 +11,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment">
-    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Home Screen"
+    android:textSize="30sp"
+    tools:layout_editor_absoluteY="152dp"
+    tools:layout_editor_absoluteX="102dp"
+    android:layout_marginLeft="20dp"/>
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
 
 
 </RelativeLayout>
