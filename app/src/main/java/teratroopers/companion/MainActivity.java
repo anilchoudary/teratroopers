@@ -103,8 +103,18 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.fragment,stats).commit();
 
         } else if (id == R.id.nav_rate) {
+            setTitle("Rate");
+            rate rate = new rate();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment,rate).commit();
+
 
         } else if (id == R.id.nav_about) {
+            setTitle("About us ");
+            about about = new about();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment,about).commit();
+
 
         }
 
