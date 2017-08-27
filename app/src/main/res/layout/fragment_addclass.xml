@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,4 +8,84 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="270dp"
+        android:background="@android:color/holo_blue_light"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":-)"
+        android:textColor="@android:color/background_light"
+        android:textSize="128sp"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="59dp"
+        android:layout_marginTop="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:ems="10"
+        android:hint="Starts From"
+        android:inputType="number"
+        android:singleLine="true"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="403dp"
+        android:layout_alignBaseline="@+id/editText3"
+        android:layout_alignBottom="@+id/editText3"
+        android:layout_alignStart="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:ems="10"
+        android:hint="To"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="206dp"
+        tools:layout_editor_absoluteY="403dp"
+        android:layout_marginEnd="17dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="43dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignEnd="@+id/editText3"
+        android:layout_below="@+id/textView5"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="36dp"
+        android:clickable="true"
+        android:keepScreenOn="true"
+        app:fabSize="normal"
+        app:srcCompat="@color/colorAccent"
+        tools:layout_editor_absoluteX="290dp"
+        tools:layout_editor_absoluteY="233dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText3"
+        android:layout_below="@+id/floatingActionButton"
+        android:layout_marginTop="37dp"
+        android:backgroundTint="@color/colorAccent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Class Name"
+        android:textColor="@android:color/darker_gray" />
+</RelativeLayout>
