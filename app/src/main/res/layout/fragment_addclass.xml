@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="teratroopers.companion.addclass">
 
     <!-- TODO: Update blank fragment layout -->
@@ -44,7 +44,8 @@
         tools:layout_editor_absoluteY="403dp"
         android:layout_alignBaseline="@+id/editText3"
         android:layout_alignBottom="@+id/editText3"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="44dp" />
 
     <EditText
         android:id="@+id/editText3"
@@ -56,10 +57,10 @@
         android:inputType="number"
         tools:layout_editor_absoluteX="206dp"
         tools:layout_editor_absoluteY="403dp"
-        android:layout_marginEnd="17dp"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="43dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/editText2"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="54dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -80,12 +81,12 @@
         android:id="@+id/editText"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText3"
-        android:layout_below="@+id/floatingActionButton"
-        android:layout_marginTop="37dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Class Name"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/editText3"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
