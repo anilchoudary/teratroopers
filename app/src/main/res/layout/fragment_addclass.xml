@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="fill_parent"
-        android:layout_height="270dp"
+        android:layout_height="350dp"
         android:background="@android:color/holo_blue_light"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="2dp" />
@@ -20,73 +20,72 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
         android:text=":-)"
         android:textColor="@android:color/background_light"
-        android:textSize="128sp"
+        android:textSize="150sp"
         tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="59dp"
-        android:layout_marginTop="54dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
+        tools:layout_editor_absoluteY="59dp" />
 
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editText3"
+        android:layout_alignBottom="@+id/editText3"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="Starts From"
         android:inputType="number"
         android:singleLine="true"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="403dp"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="44dp" />
+        tools:layout_editor_absoluteY="403dp" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="54dp"
+        android:layout_marginStart="40dp"
+        android:layout_toEndOf="@+id/editText2"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="To"
         android:inputType="number"
         tools:layout_editor_absoluteX="206dp"
-        tools:layout_editor_absoluteY="403dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/editText2"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="54dp" />
+        tools:layout_editor_absoluteY="403dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignEnd="@+id/editText3"
-        android:layout_below="@+id/textView5"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="36dp"
         android:clickable="true"
         android:keepScreenOn="true"
         app:fabSize="normal"
         app:srcCompat="@color/colorAccent"
         tools:layout_editor_absoluteX="290dp"
-        tools:layout_editor_absoluteY="233dp" />
+        tools:layout_editor_absoluteY="233dp"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/editText"
+        android:layout_alignEnd="@+id/editText" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="340dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="20dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Class Name"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginBottom="12dp"
-        android:layout_above="@+id/editText3"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/class_name"
+        android:textColor="@android:color/darker_gray" />
 </RelativeLayout>
