@@ -9,6 +9,13 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <supports-screens
+            android:resizeable="true"
+            android:smallScreens="true"
+            android:normalScreens="true"
+            android:largeScreens="true"
+            android:anyDensity="true"
+            />
         <activity
             android:name=".MainActivity"
             android:label="Attendance"
