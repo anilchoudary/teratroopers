@@ -27,7 +27,8 @@
         android:textColor="@android:color/background_light"
         android:textSize="150sp"
         tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="59dp" />
+        tools:layout_editor_absoluteY="59dp"
+        tools:ignore="HardcodedText" />
 
 
     <EditText
@@ -44,7 +45,8 @@
         android:inputType="number"
         android:singleLine="true"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="403dp" />
+        tools:layout_editor_absoluteY="403dp"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/editText3"
@@ -59,7 +61,8 @@
         android:hint="To"
         android:inputType="number"
         tools:layout_editor_absoluteX="206dp"
-        tools:layout_editor_absoluteY="403dp" />
+        tools:layout_editor_absoluteY="403dp"
+        tools:ignore="HardcodedText" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"

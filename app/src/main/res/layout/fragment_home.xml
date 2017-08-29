@@ -14,16 +14,18 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="101dp"
-        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="220dp"
+        android:fontFamily="serif-monospace"
         android:text="Welcome to Companion"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintWidth_max="160dp"
         tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="170dp" />
+        tools:layout_editor_absoluteY="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton2"
