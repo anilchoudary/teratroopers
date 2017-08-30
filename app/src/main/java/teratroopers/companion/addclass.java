@@ -16,6 +16,7 @@ import static android.content.Context.VIBRATOR_SERVICE;
  * A simple {@link Fragment} subclass.
  */
 public class addclass extends Fragment {
+    mydbhelper mydb;
 
 
     Vibrator vibe;
@@ -27,6 +28,7 @@ public class addclass extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_addclass, container, false);

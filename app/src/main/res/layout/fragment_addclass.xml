@@ -33,36 +33,33 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/editText"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="Starts From"
         android:inputType="number"
         android:singleLine="true"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="403dp"
         tools:ignore="HardcodedText"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginStart="9dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="403dp" />
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="54dp"
-        android:layout_marginStart="30dp"
-        android:layout_toEndOf="@+id/editText2"
+        android:layout_marginBottom="51dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="To"
         android:inputType="number"
         tools:ignore="HardcodedText"
         tools:layout_editor_absoluteX="206dp"
-        tools:layout_editor_absoluteY="403dp" />
+        tools:layout_editor_absoluteY="403dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/editText" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -75,13 +72,13 @@
         android:clickable="true"
         android:keepScreenOn="true"
         app:fabSize="normal"
-        app:srcCompat="@color/colorAccent"
+        app:srcCompat="@drawable/done"
         tools:layout_editor_absoluteX="290dp"
         tools:layout_editor_absoluteY="233dp" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText3"
         android:layout_centerHorizontal="true"
@@ -90,7 +87,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
+        android:hint="Class Name"
         android:inputType="textPersonName"
-        android:text="@string/class_name"
         android:textColor="@android:color/darker_gray" />
 </RelativeLayout>
