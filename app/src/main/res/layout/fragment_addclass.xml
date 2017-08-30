@@ -68,14 +68,16 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_above="@+id/editText"
+        android:layout_marginBottom="3dp"
+        android:layout_marginStart="40dp"
+        android:layout_toEndOf="@+id/textView5"
         android:clickable="true"
         android:keepScreenOn="true"
         app:fabSize="normal"
         app:srcCompat="@color/colorAccent"
         tools:layout_editor_absoluteX="290dp"
-        tools:layout_editor_absoluteY="233dp"
-        android:layout_above="@+id/editText"
-        android:layout_alignEnd="@+id/editText" />
+        tools:layout_editor_absoluteY="233dp" />
 
     <EditText
         android:id="@+id/editText"
