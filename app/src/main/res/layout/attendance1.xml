@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_constraintRight_toLeftOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/shape">
+
+
+        <stroke android:width="1dp"/>
+
+    </shape>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        app:layout_constraintGuide_begin="363dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="363dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/colorAccent"
+        android:editable="false"
+        android:includeFontPadding="false"
+        android:text="Absent"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="369dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/button4"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="?attr/colorAccent"
+        android:text="Present"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorAccent"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="369dp"
+        android:layout_marginStart="31dp"
+        android:layout_below="@+id/shape"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginTop="77dp" />
+
+
+</RelativeLayout>
