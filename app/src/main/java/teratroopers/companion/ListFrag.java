@@ -1,6 +1,8 @@
 package teratroopers.companion;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,9 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
-public class ListFrag extends Fragment {
+public class ListFrag extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     View view;
     mydbhelper mydb;
@@ -24,7 +27,7 @@ public class ListFrag extends Fragment {
     Button b1;
     LinearLayout linearLayout;
     int n,i;
-    String[] names;
+    String cname;
     public ListFrag() {
 
     }
@@ -49,11 +52,21 @@ public class ListFrag extends Fragment {
         Cursor res=mydb.getalldata();
         while (res.moveToNext()) {
             i=0;
+            cname=res.getString(0);
             b1 = new Button(getActivity());
             b1.setText(res.getString(0));
+            b1.setTag(res.getString(0));
             linearLayout.addView(b1);
+            b1.setOnClickListener(ListFrag.this);
         }
     }
+    public void onClick(View v) {
+        String str=v.getTag().toString();
+        //Toast.makeText(getActivity(),str+" clicked",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent("teratroopers.companion.Attendance");
+        intent.putExtra("name",str);
+        startActivity(intent);
+        }
 
 }
 
