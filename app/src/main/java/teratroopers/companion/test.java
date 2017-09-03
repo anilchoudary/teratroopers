@@ -33,16 +33,24 @@ public class test extends AppCompatActivity {
     }
     public void confirm()
     {
+
         con.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        boolean isInserted= mydb.insertData(a1.getText().toString(),Integer.parseInt(a2.getText().toString()),
-                                Integer.parseInt(a3.getText().toString()) );
-                        if(isInserted==true)
-                            Toast.makeText(test.this, "victory", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(test.this, "you screwd up", Toast.LENGTH_SHORT).show();
+
+                        try {
+                            boolean isInserted = mydb.insertData(a1.getText().toString(), Integer.parseInt(a2.getText().toString()),
+                                    Integer.parseInt(a3.getText().toString()));
+                            if (isInserted == true)
+                                Toast.makeText(test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(test.this, "internal error occurred! please restart the app", Toast.LENGTH_SHORT).show();
+                        }
+                        catch(Exception e){
+                            Toast.makeText(test.this,"Enter data in all fields",Toast.LENGTH_SHORT).show();
+                        }
+
 
                     }
                 }

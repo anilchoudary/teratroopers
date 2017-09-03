@@ -26,16 +26,12 @@ public class ListFrag extends Fragment {
     int n,i;
     String[] names;
     public ListFrag() {
-        // Required empty public constructor
+
     }
-
-
-    // TODO: Rename and change types and number of parameters
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_list2, container, false);
         this.mydb = new mydbhelper((Context)this.getActivity());
         return view;
@@ -44,9 +40,6 @@ public class ListFrag extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //viewList();
-
-        //paste
 
         linearLayout=(LinearLayout)view.findViewById(R.id.linearlayout);
         createbuttons();
@@ -60,13 +53,6 @@ public class ListFrag extends Fragment {
             b1.setText(res.getString(0));
             linearLayout.addView(b1);
         }
-
-        /*for (i = 0; i < 5; i++) {
-            // b1=new Button(getContext());
-            b1 = new Button(getActivity());
-            b1.setText("manual");
-            linearLayout.addView(b1);
-        }*/
     }
 
 }
