@@ -16,7 +16,7 @@ import static android.content.Context.VIBRATOR_SERVICE;
  * A simple {@link Fragment} subclass.
  */
 public class addclass extends Fragment {
-    mydbhelper mydb;
+
 
 
     Vibrator vibe;

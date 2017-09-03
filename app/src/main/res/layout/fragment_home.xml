@@ -31,11 +31,16 @@
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:clickable="true"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/addclass"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="37dp" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="37dp"
+        android:clickable="true"
+        android:keyboardNavigationCluster="false"
+        app:elevation="@android:dimen/app_icon_size"
+        app:fabSize="normal"
+        app:rippleColor="@color/colorPrimaryDark"
+        app:srcCompat="@drawable/addclass"
+        tools:onClick="testfab"
+       />
 </RelativeLayout>

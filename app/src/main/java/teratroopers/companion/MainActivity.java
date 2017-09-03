@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import static teratroopers.companion.R.layout.fragment_home;
+import static teratroopers.companion.R.layout.fragment_list2;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,11 +33,12 @@ public class MainActivity extends AppCompatActivity
         tx.replace(R.id.fragment, new home());
         tx.commit();
 
-      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent("teratroopers.companion.test");
+                startActivity(intent);
             }
         });*/
 
@@ -88,15 +91,20 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_addclass) {
-            setTitle("Add a Class");
+
+            Intent intent=new Intent("teratroopers.companion.test");
+            startActivity(intent);
+
+           /* setTitle("Add a Class");
             addclass addclass =new addclass();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,addclass).commit();
+            fragmentManager.beginTransaction().replace(R.id.fragment,addclass).commit();*/
         } else if (id == R.id.nav_list) {
              setTitle("Class List");
-             list list = new list();
+            ListFrag fragment=new ListFrag();
              FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,list).commit();
+            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
+
         } else if (id == R.id.nav_register) {
             setTitle("Attendance Register");
             register register = new register();
