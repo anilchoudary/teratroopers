@@ -26,7 +26,7 @@ public class Attendance extends AppCompatActivity {
 public ProgressDialog dialog=null;
     public String uploadFilePath = "/storage/emulated/0/Download";
     public String uploadFileName = "mydata.txt";
-   String upLoadServerUri = "http://192.168.1.103:8080/webapplication7/fileupload";
+   String upLoadServerUri = "http://192.168.0.3:8080/webapplication7/uploadservlet";
     int serverResponseCode=0;
     mydbhelper mydb;
     int sroll,eroll;
@@ -46,7 +46,7 @@ public ProgressDialog dialog=null;
         mydb =new mydbhelper(this);
         Bundle b = getIntent().getExtras();
         String cname = b.getString("name");
-        goToClass gtc=new goToClass(cname);
+        //goToClass gtc=new goToClass(cname);
         getValues(cname);
         display();
         presentButton();

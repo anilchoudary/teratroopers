@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="teratroopers.companion.addclass"
-    tools:ignore="NewApi">
+    tools:context="teratroopers.companion.addclass">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -12,7 +11,7 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="fill_parent"
-        android:layout_height="280dp"
+        android:layout_height="380dp"
         android:background="@android:color/holo_blue_light"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="2dp" />
@@ -21,14 +20,14 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="57dp"
+        android:layout_marginBottom="41dp"
         android:text=":-)"
         android:textColor="@android:color/background_light"
-        android:textSize="130sp"
+        android:textSize="180sp"
         tools:ignore="HardcodedText"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="59dp"
-        android:layout_alignBottom="@+id/textView3"
+        android:layout_above="@+id/floatingActionButton"
         android:layout_centerHorizontal="true" />
 
 
@@ -36,6 +35,8 @@
         android:id="@+id/editText2"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/editText"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="Starts From"
@@ -43,15 +44,13 @@
         android:singleLine="true"
         tools:ignore="HardcodedText"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="403dp"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginBottom="6dp" />
+        tools:layout_editor_absoluteY="403dp" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="51dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="To"
@@ -60,17 +59,16 @@
         tools:layout_editor_absoluteX="206dp"
         tools:layout_editor_absoluteY="403dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_marginBottom="64dp" />
+        android:layout_alignEnd="@+id/editText" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_above="@+id/editText"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="55dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_toEndOf="@+id/textView5"
         android:clickable="true"
         android:keepScreenOn="true"
         app:fabSize="normal"
@@ -82,12 +80,14 @@
         android:id="@+id/editText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="Class Name"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:layout_above="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="75dp" />
+        android:textColor="@android:color/darker_gray" />
 </RelativeLayout>

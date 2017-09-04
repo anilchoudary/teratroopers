@@ -21,21 +21,23 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="57dp"
         android:text=":-)"
         android:textColor="@android:color/background_light"
         android:textSize="130sp"
         tools:ignore="HardcodedText"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="59dp"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp" />
 
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/editText"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="Starts From"
@@ -43,15 +45,13 @@
         android:singleLine="true"
         tools:ignore="HardcodedText"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="403dp"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginBottom="6dp" />
+        tools:layout_editor_absoluteY="403dp" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="51dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="To"
@@ -60,17 +60,16 @@
         tools:layout_editor_absoluteX="206dp"
         tools:layout_editor_absoluteY="403dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_marginBottom="64dp" />
+        android:layout_alignEnd="@+id/editText" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_above="@+id/editText"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="55dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_toEndOf="@+id/textView5"
         android:clickable="true"
         android:keepScreenOn="true"
         app:fabSize="normal"
@@ -82,12 +81,14 @@
         android:id="@+id/editText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/colorAccent"
         android:ems="10"
         android:hint="Class Name"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:layout_above="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="75dp" />
+        android:textColor="@android:color/darker_gray" />
 </RelativeLayout>
