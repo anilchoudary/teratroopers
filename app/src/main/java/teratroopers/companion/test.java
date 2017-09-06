@@ -1,6 +1,7 @@
 package teratroopers.companion;
 
 import android.database.Cursor;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,53 +13,59 @@ import android.widget.Toast;
 public class test extends AppCompatActivity {
     mydbhelper mydb;
     EditText a1,a2,a3;
-    Button con,viw,btn;
-
+    Button viw;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         mydb =new mydbhelper(this);
-        btn=(Button)findViewById(R.id.backbtn);
         a1 = (EditText) findViewById(R.id.editText5);
         a2 = (EditText) findViewById(R.id.editText6);
         a3 = (EditText) findViewById(R.id.editText7);
-        con=(Button)findViewById(R.id.button5);
         viw=(Button)findViewById(R.id.button6);
-        confirm();
+        fab=(FloatingActionButton)findViewById(R.id.confirmfab);
+        confirmfab();
         viewall();
-        backbtn();
+        //backbtn();
 
     }
-    public void confirm()
+    public void confirmfab()
     {
 
-        con.setOnClickListener(
+        fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         try {
-                            boolean isInserted = mydb.insertData(a1.getText().toString(), Integer.parseInt(a2.getText().toString()),
-                                    Integer.parseInt(a3.getText().toString()));
-                            if (isInserted == true)
-                                Toast.makeText(test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(test.this, "internal error occurred! please restart the app", Toast.LENGTH_SHORT).show();
-                        }
-                        catch(Exception e){
-                            Toast.makeText(test.this,"Enter data in all fields",Toast.LENGTH_SHORT).show();
-                        }
+                                int sr, er;
+                                sr = Integer.parseInt(a2.getText().toString());
+                                er = Integer.parseInt(a3.getText().toString());
 
-
+                                if (sr < er) {
+                                 boolean isInserted = mydb.insertData(a1.getText().toString(), sr, er);
+                                  if (isInserted == true) {
+                                    Toast.makeText(test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                                    a1.setText("");
+                                    a2.setText("");
+                                    a3.setText("");
+                                  } else
+                                    Toast.makeText(test.this, "internal error occurred! please reinstall the app", Toast.LENGTH_SHORT).show();
+                                }
+                            else{
+                                Toast.makeText(test.this, "Starting roll no should be less than Ending roll no", Toast.LENGTH_SHORT).show();
+                                }
+                        }
+                        catch (Exception e) {
+                                Toast.makeText(test.this, "Enter data in all fields", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         );
-
-
     }
     public void viewall(){
+
         viw.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -91,7 +98,7 @@ public class test extends AppCompatActivity {
 
     }
 
-    public void backbtn(){
+   /* public void backbtn(){
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -100,5 +107,5 @@ public class test extends AppCompatActivity {
                     }
                 }
         );
-    }
+    }*/
 }
