@@ -54,8 +54,11 @@ public class Attendance extends AppCompatActivity {
         disbutton = (Button) findViewById(R.id.rolldisplay);
         Cursor res = mydb.getcname(name);
         res.moveToNext();
-        sroll = Integer.parseInt(res.getString(1));
-        eroll = Integer.parseInt(res.getString(2));
+        sroll = Integer.parseInt(res.getString(0));
+        Log.i("sroll",String.valueOf(sroll));
+        res.moveToLast();
+        eroll = Integer.parseInt(res.getString(0));
+        Log.i("sroll",String.valueOf(eroll));
     }
     public void display(){
         String number=Integer.toString(sroll);
@@ -74,11 +77,16 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        present++;
+
                         message+=String.valueOf(sroll)+"=p\n";
                         if(sroll<eroll) {
+                            present++;
                             sroll++;
                             display();
+                        }
+                        else if(sroll==eroll){
+                            present++;
+                            sroll++;
                         }
                         else{
                             disbutton.setText("Attendance Complete");
@@ -99,11 +107,16 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        absent++;
+
                         message+=String.valueOf(sroll)+"=a\n";
                         if(sroll<eroll) {
+                            absent++;
                             sroll++;
                             display();
+                        }
+                        else if(sroll==eroll){
+                            absent++;
+                            sroll++;
                         }
                         else{
                             disbutton.setText("Attendance complete");

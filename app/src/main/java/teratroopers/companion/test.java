@@ -40,20 +40,23 @@ public class test extends AppCompatActivity {
                     public void onClick(View view) {
                         try {
                                 int sr, er;
+                                String cname;
                                 sr = Integer.parseInt(a2.getText().toString());
                                 er = Integer.parseInt(a3.getText().toString());
+                                cname=a1.getText().toString();
 
                                 if (sr < er) {
-                                 boolean isInserted = mydb.insertData(a1.getText().toString(), sr, er);
-                                  if (isInserted == true) {
-                                    Toast.makeText(test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-                                    a1.setText("");
-                                    a2.setText("");
-                                    a3.setText("");
-                                  } else
-                                    Toast.makeText(test.this, "internal error occurred! please reinstall the app", Toast.LENGTH_SHORT).show();
+                                    boolean isInserted=mydb.dbname(cname,sr,er);
+                                   // boolean isInserted = mydb.insertData(cname, sr, er);
+                                    if (isInserted == true) {
+                                        Toast.makeText(test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                                        a1.setText("");
+                                        a2.setText("");
+                                        a3.setText("");
+                                        } else
+                                    Toast.makeText(test.this, "internal error occurred! please create class with another name", Toast.LENGTH_SHORT).show();
                                 }
-                            else{
+                                else{
                                 Toast.makeText(test.this, "Starting roll no should be less than Ending roll no", Toast.LENGTH_SHORT).show();
                                 }
                         }

@@ -53,6 +53,7 @@ public class ListFrag extends Fragment implements View.OnClickListener {
         while (res.moveToNext()) {
             i=0;
             cname=res.getString(0);
+            Log.i("name",cname);
             b1 = new Button(getActivity());
             b1.setText(res.getString(0));
             b1.setTag(res.getString(0));
