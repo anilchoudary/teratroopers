@@ -1,6 +1,7 @@
 package teratroopers.companion;
 
 import android.database.Cursor;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -56,11 +57,29 @@ public class test extends AppCompatActivity {
                                         a2.setText("");
                                         a3.setText("");
                                         tv=(TextView)findViewById(R.id.classaddtext);
-                                        tv.animate().alpha(1).setDuration(2000);
-                                        } else
-                                    Toast.makeText(test.this, "internal error occurred! please create class with another name", Toast.LENGTH_SHORT).show();
+                                        final Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // Do something after 5s = 5000ms
+                                                tv.animate().alpha(1).setDuration(2000);
+                                            }
+                                        }, 3000);
+
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // Do something after 5s = 5000ms
+                                                tv.animate().alpha(0).setDuration(2000);
+                                            }
+                                        }, 7500);
+
+                                    } else {
+                                        Toast.makeText(test.this, "internal error occurred! please create class with another name",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                                else{
+                                else {
                                 Toast.makeText(test.this, "Starting roll no should be less than Ending roll no", Toast.LENGTH_SHORT).show();
                                 }
                         }

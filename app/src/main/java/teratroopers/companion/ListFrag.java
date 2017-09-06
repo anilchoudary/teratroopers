@@ -2,6 +2,7 @@ package teratroopers.companion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -28,6 +29,7 @@ public class ListFrag extends Fragment implements View.OnClickListener {
     LinearLayout linearLayout;
     int n,i;
     String cname;
+    String str;
     public ListFrag() {
 
     }
@@ -49,7 +51,7 @@ public class ListFrag extends Fragment implements View.OnClickListener {
     }
     public void createbuttons() {
 
-        Cursor res=mydb.getalldata();
+        final Cursor res=mydb.getalldata();
         while (res.moveToNext()) {
             i=0;
             cname=res.getString(0);
@@ -59,8 +61,32 @@ public class ListFrag extends Fragment implements View.OnClickListener {
             b1.setTag(res.getString(0));
             linearLayout.addView(b1);
             b1.setOnClickListener(ListFrag.this);
+            b1.setOnLongClickListener(
+                    new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            str=view.getTag().toString();
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("Title")
+                                    .setMessage("Do you want to delete the class?")
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                                mydb.deleteclass(str);
+                                        }})
+                                    .setNegativeButton(android.R.string.no, null).show();
+                            return true;
+                        }
+
+                    }
+
+            );
+
         }
+
     }
+
     public void onClick(View v) {
         String str=v.getTag().toString();
         //Toast.makeText(getActivity(),str+" clicked",Toast.LENGTH_SHORT).show();

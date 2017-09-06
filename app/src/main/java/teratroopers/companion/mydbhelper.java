@@ -107,4 +107,11 @@ public class mydbhelper extends SQLiteOpenHelper {
             return false;
     }
 
+    public void deleteclass(String classname){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        //sqLiteDatabase.execSQL("delete TABLE IF EXISTS " + classname);
+        sqLiteDatabase.delete(classname,null,null);
+        sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
+    }
+
 }
