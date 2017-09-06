@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class test extends AppCompatActivity {
     mydbhelper mydb;
     EditText a1,a2,a3;
     Button viw;
+    TextView tv;
     FloatingActionButton fab;
 
     @Override
@@ -53,6 +55,8 @@ public class test extends AppCompatActivity {
                                         a1.setText("");
                                         a2.setText("");
                                         a3.setText("");
+                                        tv=(TextView)findViewById(R.id.classaddtext);
+                                        tv.animate().alpha(1).setDuration(1500);
                                         } else
                                     Toast.makeText(test.this, "internal error occurred! please create class with another name", Toast.LENGTH_SHORT).show();
                                 }
