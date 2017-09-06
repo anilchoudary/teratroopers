@@ -56,7 +56,7 @@ public class test extends AppCompatActivity {
                                         a2.setText("");
                                         a3.setText("");
                                         tv=(TextView)findViewById(R.id.classaddtext);
-                                        tv.animate().alpha(1).setDuration(1500);
+                                        tv.animate().alpha(1).setDuration(2000);
                                         } else
                                     Toast.makeText(test.this, "internal error occurred! please create class with another name", Toast.LENGTH_SHORT).show();
                                 }

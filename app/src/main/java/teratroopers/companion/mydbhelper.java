@@ -96,10 +96,11 @@ public class mydbhelper extends SQLiteOpenHelper {
     public boolean checkclassname(){ //checks class name for existence
 
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-
+            Log.i("came to checkclassname","success");
             Cursor result = sqLiteDatabase.rawQuery("Select count(*) from " + cTABLE_NAME + " where " + CTCOL1 + "=" + "'"+TABLE_NAME+"'", null);
             result.moveToNext();
-           int k=Integer.parseInt(result.getString(0));
+            int k=Integer.parseInt(result.getString(0));
+            Log.i("value of k:",String.valueOf(k));
         if(k==0)
             return true;
         else
