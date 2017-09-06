@@ -122,12 +122,10 @@ public class Attendance extends AppCompatActivity {
                             disbutton.setText("Attendance complete");
                             Snackbar.make(view,"Attendance Complete: \n"+present+"/"+total+" are present",Snackbar.LENGTH_LONG).show();
                         }
-
                     }
                 }
         );
     }
-
 
 }
 
