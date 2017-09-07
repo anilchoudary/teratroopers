@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,10 +30,9 @@ public class Attendance extends AppCompatActivity {
     Button disbutton;
     Button presbutton;
     Button absbutton;
-    int present,absent;
     int total;
+    int droll;
     int a;
-    String message;
     String cname;
     public Context context;
 
@@ -58,63 +58,46 @@ public class Attendance extends AppCompatActivity {
         Cursor res = mydb.getcname(name);
         res.moveToNext();
         sroll = Integer.parseInt(res.getString(0));
+        droll=sroll;
         Log.i("sroll",String.valueOf(sroll));
         res.moveToLast();
         eroll = Integer.parseInt(res.getString(0));
         Log.i("sroll",String.valueOf(eroll));
     }
     public void display(){
-        String number=Integer.toString(sroll);
+        String number=Integer.toString(droll);
         disbutton.setBackgroundColor(Color.BLUE);
         disbutton.setClickable(false);
         disbutton.setText(number);
     }
 
-    //TODO store values in database and provide back button on snackbar
-    //present button click upon attendance completion increases present count(check)
-
+    //TODO store values in database and provide back button on snackbar (partially complete)
    public void presentButton(){
-       a=sroll;
         total=(eroll-sroll)+1;
         presbutton=(Button)findViewById(R.id.present);
         presbutton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        message+=String.valueOf(sroll)+"=p\n";
-
-                        if(sroll<eroll) {
-                            if(sroll==a){
-                                mydb.atd( 1,cname,sroll);
-                                a--;
+                        if(droll<eroll) {
+                            if (droll == sroll) {
+                                mydb.alterTable(cname);
                             }
-
-                            present++;
-                            sroll++;
+                            mydb.registerData(cname, droll, 1);
+                            droll++;
                             display();
-
-
-
-                            mydb.atdinsert(cname);
                         }
-                        else if(sroll==eroll){
-                            present++;
-                            sroll++;
-
+                        else if(droll==eroll){
+                            mydb.registerData(cname, droll, 1);
+                            disbutton.setText("Attendance complete");
+                            Snackbar.make(view,"Attendance Complete",Snackbar.LENGTH_LONG).show();
                         }
-                        else{
-                            disbutton.setText("Attendance Complete");
-                            Snackbar.make(view,"Attendance Complete: \n"+present+"/"+total+"are present",Snackbar.LENGTH_LONG).show();
-                        }
-
                     }
                 }
         );
-    }
+   }
 
-    //TODO store values in database and provide back button on snackbar
-
+    //TODO store values in database and provide back button on snackbar (partially complete)
     public void absentButton(){
         a=sroll;
         total=(eroll-sroll)+1;
@@ -123,32 +106,18 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        message+=String.valueOf(sroll)+"=a\n";
-                        if(sroll<eroll) {
-                            if(sroll==a)
-                                mydb.atd( 0,cname,sroll);
-                            absent++;
-                            sroll++;
+                        if(droll<eroll) {
+                            if (droll == sroll) {
+                                mydb.alterTable(cname);
+                            }
+                            mydb.registerData(cname, droll, 0);
+                            droll++;
                             display();
-                            if(sroll==a)
-                                mydb.atd( 0,cname,sroll);
-                            mydb.atdinsert(cname);
-
-
-
-
-
-
-
                         }
-                        else if(sroll==eroll){
-                            absent++;
-                            sroll++;
-                        }
-                        else{
+                        else if(droll==eroll){
+                            mydb.registerData(cname, droll, 0);
                             disbutton.setText("Attendance complete");
-                            Snackbar.make(view,"Attendance Complete: \n"+present+"/"+total+" are present",Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(view,"Attendance Complete",Snackbar.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -161,10 +130,26 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mydb.retrievedatatodisplayattendance(cname);
+                        Cursor res=mydb.retrievedatatodisplayattendance(cname);
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append(res.getString(0)+"=");
+                            buffer.append(res.getString(1) + "\n");
+                            //buffer.append("Ending Roll :" + res.getString(2) + "\n");
+                        }
+                        showmessage("Data", buffer.toString());
                     }
                 }
         );
+    }
+
+    public void showmessage(String title,String Message) {
+        AlertDialog.Builder builder = new  AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+
     }
 
 }

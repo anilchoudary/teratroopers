@@ -114,35 +114,54 @@ public class mydbhelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(classname,null,null);
         sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
     }
-    public void atd(int i,String cname,int sroll){
+    public void alterTable(String cname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-
-
+        boolean k=isFieldExist(cname,"date");
+        if(k) {
             sqLiteDatabase.execSQL("alter table " + cname + " add  date INTEGER");
-            Log.i("table altered:","success");
-
+            Log.i("table altered:", "success");
         }
+        else {
+            Log.i("Attendance taken:","finish");
+        }
+    }
 
 
-    public void atdinsert(String classname){
+   /* public void atdinsert(String classname){
         ContentValues contentvalues = new ContentValues();
         sqLiteDatabase=this.getWritableDatabase();
         contentvalues.put(COL4,1);
         Log.i("insertion success","not biscuit");
         sqLiteDatabase.insert(classname,null,contentvalues);
         Log.i("after success"," is no use");
+    }*/
+
+    public Cursor retrievedatatodisplayattendance(String classname){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        String sqlquery;
+        sqlquery="select rollnos,date from "+classname;
+        Cursor result = sqLiteDatabase.rawQuery(sqlquery,null);
+        return result;
+    }
+
+    public void registerData(String cname,int droll,int i){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues contentvalues=new ContentValues();
+        contentvalues.put("date",i);
+            sqLiteDatabase.execSQL("UPDATE " + cname + " SET DATE = " + i + " WHERE " + COL1 + " = " + droll);
+            Log.i("update complete:", "success");
 
     }
 
-    public void retrievedatatodisplayattendance(String classname){
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        String sqlquery;
-        sqlquery="select date from "+classname;
-        Cursor result = sqLiteDatabase.rawQuery(sqlquery,null);
-        result.moveToNext();
-        int k=Integer.parseInt(result.getString(0));
-        Log.i("success:",String.valueOf(k));
-
+    public boolean isFieldExist(String cname, String colname) {
+        boolean k = true;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("PRAGMA table_info("+cname+")",null);
+        int i = res.getColumnIndex(colname);
+        if(i == -1) {
+            k = false;
+        }
+        return k;
     }
 
 
