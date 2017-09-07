@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.util.*;
 import android.view.View;
 import android.widget.Button;
+import java.text.*;
+import java.util.*;
 import android.widget.Toast;
 
 import java.io.DataOutputStream;
@@ -28,15 +30,18 @@ public class Attendance extends AppCompatActivity {
     int sroll,eroll;
     Button disbutton;
     Button presbutton;
-    Button absbutton;
+    Button absbutton,view;
     int present,absent;
     int total;
+    int c=0;
+    int roll;
     String message;
     String cname;
     public Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        view=(Button)findViewById(R.id.button5) ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
         context=this;
@@ -73,6 +78,7 @@ public class Attendance extends AppCompatActivity {
 
    public void presentButton(){
         total=(eroll-sroll)+1;
+       c=sroll;
         presbutton=(Button)findViewById(R.id.present);
         presbutton.setOnClickListener(
                 new View.OnClickListener() {
@@ -80,18 +86,32 @@ public class Attendance extends AppCompatActivity {
                     public void onClick(View view) {
 
                         message+=String.valueOf(sroll)+"=p\n";
+
+                        if(c==sroll)
+                        {
+                            try {
+                                SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+                                String date = sdf.format(new Date());
+                                date = "dt" + date;
+                                Log.i("our  date:", date);
+                                Log.i("cname:",cname);
+                                mydb.alter(date,cname);
+                            }
+                            catch(Exception e)
+                            {
+                              Log.i("inserting...","im in catch");
+                            }
+
+                        }
                         if(sroll<eroll) {
+                            Log.i("sroll",String.valueOf(sroll));
+                            mydb.insertattendance(cname,1);
                             present++;
                             sroll++;
                             display();
-                            int a=sroll;
-
-                                mydb.atd( 1,cname,sroll);
-
-
-
                         }
                         else if(sroll==eroll){
+                            mydb.insertattendance(cname,1);
                             present++;
                             sroll++;
 
@@ -117,19 +137,40 @@ public class Attendance extends AppCompatActivity {
                     public void onClick(View view) {
 
                         message+=String.valueOf(sroll)+"=a\n";
-                        int a=sroll;
+                        if(c==0)
+                        {
+                            try {
+                                SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+                                String date = sdf.format(new Date());
+                                date = "dt" + date;
+                                Log.i("our  date:", date);
+                                Log.i("cname:",cname);
+                                mydb.alter(date,cname);
+                            }
+                            catch(Exception e)
+                            {
+                               // Log.i("catch","im in catch");
+                                Log.i("insert code", "inserting..");
+                            }
+                            c++;
+                        }
+
+                            int a=sroll;
                         if(sroll<eroll) {
+                            mydb.insertattendance(cname,0);
                             absent++;
                             sroll++;
                             display();
 
 
-                                mydb.atd( 0,cname,sroll);
+                                //mydb.atd( 0,cname,sroll);
 
 
 
                         }
                         else if(sroll==eroll){
+                            mydb.insertattendance(cname,0);
+
                             absent++;
                             sroll++;
                         }
@@ -142,6 +183,16 @@ public class Attendance extends AppCompatActivity {
         );
     }
 
+    public void viewbutton(){
+        view.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }
+        );
+    }
 }
 
 
