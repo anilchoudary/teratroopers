@@ -7,9 +7,6 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import java.util.*;
-import java.text.*;
-
 
 /**
  * Created by Prashanth on 31-08-2017.
@@ -24,9 +21,7 @@ public class mydbhelper extends SQLiteOpenHelper {
     public static final String COL2="studnames";
     public static final String CTCOL1="classname";
     public static final String COL3="roll2";
-    public static  String date;
-    private static final String DATABASE_ALTER_TEAM_1 = "ALTER TABLE "
-            + TABLE_NAME + " ADD COLUMN " + date + " string;";
+    public static final String COL4="date";
     boolean k=false;
 
 
@@ -42,13 +37,9 @@ public class mydbhelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table "+cTABLE_NAME+"("+CTCOL1+" TEXT);");
     }
 
-   @Override
+    @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-       // sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-       Log.i(" before altering","success");
-      // String test="ALTER TABLE " + TABLE_NAME + " ADD COLUMN " + date + "  INTEGER DEFAULT 0";
-       sqLiteDatabase.execSQL(DATABASE_ALTER_TEAM_1);
-       Log.i("after altering","success");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
@@ -90,14 +81,10 @@ public class mydbhelper extends SQLiteOpenHelper {
         Log.i("tname",TABLE_NAME);
 
         sqLiteDatabase.execSQL("create table if not exists "+TABLE_NAME+"("+COL1+" INTEGER,"+COL2+ " TEXT);");
-        Log.i("table created:",TABLE_NAME);
-       // SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-       // String date = sdf.format(new Date());
-       // Log.i("our  date:", date);
         boolean c=checkclassname();
         if(c==true) {
-        contentvalues.put(CTCOL1,TABLE_NAME);
-        sqLiteDatabase.insert(cTABLE_NAME, null, contentvalues);
+            contentvalues.put(CTCOL1,TABLE_NAME);
+            sqLiteDatabase.insert(cTABLE_NAME, null, contentvalues);
 
             Log.i("class table insertion:", "success");
             k = insertData(sr, er);
@@ -110,48 +97,16 @@ public class mydbhelper extends SQLiteOpenHelper {
     public boolean checkclassname(){ //checks class name for existence
 
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-            Log.i("came to checkclassname","success");
-            Cursor result = sqLiteDatabase.rawQuery("Select count(*) from " + cTABLE_NAME + " where " + CTCOL1 + "=" + "'"+TABLE_NAME+"'", null);
-            result.moveToNext();
-            int k=Integer.parseInt(result.getString(0));
-            Log.i("value of k:",String.valueOf(k));
+        Log.i("came to checkclassname","success");
+        Cursor result = sqLiteDatabase.rawQuery("Select count(*) from " + cTABLE_NAME + " where " + CTCOL1 + "=" + "'"+TABLE_NAME+"'", null);
+        result.moveToNext();
+        int k=Integer.parseInt(result.getString(0));
+        Log.i("value of k:",String.valueOf(k));
         if(k==0)
             return true;
         else
             return false;
     }
-    public void alter(String name,String cname)
-    {
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-
-        TABLE_NAME=cname;
-        date=name;
-       try
-        {
-            Cursor result = sqLiteDatabase.rawQuery("Select " + date +" from " + TABLE_NAME , null);
-        result.moveToNext();
-        int k=Integer.parseInt(result.getString(0));
-        Log.i("value of k:",String.valueOf(k));
-            Log.i("inserting..", "tryy..");
-
-        }
-        catch(Exception e) {
-            Log.i("before altering", "success");
-
-                sqLiteDatabase.execSQL("alter table " + cname + " add " + name + " INTEGER");
-                Log.i("after altering", "success");
-
-        }
-        }
-
-
-
-
-       // onUpgrade(sqLiteDatabase,1,2);
-
-
-
-
 
     public void deleteclass(String classname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
@@ -159,22 +114,36 @@ public class mydbhelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(classname,null,null);
         sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
     }
-    public void insertattendance(String cname,int a){
-        TABLE_NAME=cname;
-        ContentValues contentValues = new ContentValues();
-        sqLiteDatabase=this.getWritableDatabase();
-        contentValues.put(date,a);
-        try {
-            sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
-        }
-        catch (Exception e)
-        {
-            Log.i("error","error");
+    public void atd(int i,String cname,int sroll){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+
+
+            sqLiteDatabase.execSQL("alter table " + cname + " add  date INTEGER");
+            Log.i("table altered:","success");
+
         }
 
+
+    public void atdinsert(String classname){
+        ContentValues contentvalues = new ContentValues();
+        sqLiteDatabase=this.getWritableDatabase();
+        contentvalues.put(COL4,1);
+        Log.i("insertion success","not biscuit");
+        sqLiteDatabase.insert(classname,null,contentvalues);
+        Log.i("after success"," is no use");
 
     }
 
+    public void retrievedatatodisplayattendance(String classname){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        String sqlquery;
+        sqlquery="select date from "+classname;
+        Cursor result = sqLiteDatabase.rawQuery(sqlquery,null);
+        result.moveToNext();
+        int k=Integer.parseInt(result.getString(0));
+        Log.i("success:",String.valueOf(k));
+
+    }
 
 
 }

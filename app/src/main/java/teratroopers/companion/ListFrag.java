@@ -5,18 +5,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -49,17 +53,40 @@ public class ListFrag extends Fragment implements View.OnClickListener {
         linearLayout=(LinearLayout)view.findViewById(R.id.linearlayout);
         createbuttons();
     }
+
+    //TODO create new background for buttons with sharper arrow
     public void createbuttons() {
 
+        LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,150);
+        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 5);
+        lp1.setMargins(20, 20, 20, 10); //ltrd
         final Cursor res=mydb.getalldata();
         while (res.moveToNext()) {
             i=0;
             cname=res.getString(0);
             Log.i("name",cname);
+
             b1 = new Button(getActivity());
             b1.setText(res.getString(0));
             b1.setTag(res.getString(0));
+            b1.setElevation(3.8f);
+            b1.setBackgroundResource(R.drawable.butback);
+            b1.setLayoutParams(lp1);
+            b1.setGravity(Gravity.CENTER);
             linearLayout.addView(b1);
+           //here
+
+          /*  ImageView divider1 = new ImageView(getActivity());
+
+            lp2.setMargins(20, 0, 20, 0);
+            divider1.setLayoutParams(lp2);
+            divider1.setElevation(0.5f);
+            divider1.setBackgroundColor(Color.DKGRAY);
+
+            linearLayout.addView(divider1);
+            */
+
+            //to here
             b1.setOnClickListener(ListFrag.this);
             b1.setOnLongClickListener(
                     new View.OnLongClickListener() {
