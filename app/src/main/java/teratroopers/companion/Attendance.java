@@ -32,6 +32,7 @@ public class Attendance extends AppCompatActivity {
     int present,absent;
     int total;
     String message;
+    String cname;
     public Context context;
 
     @Override
@@ -41,7 +42,7 @@ public class Attendance extends AppCompatActivity {
         context=this;
         mydb =new mydbhelper(this);
         Bundle b = getIntent().getExtras();
-        String cname = b.getString("name");
+        cname = b.getString("name");
         //goToClass gtc=new goToClass(cname);
         getValues(cname);
         display();

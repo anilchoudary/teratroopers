@@ -73,7 +73,7 @@ public class mydbhelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean dbname(String cname, int sr, int er){   //test.java activity
+    public boolean dbname(String cname, int sr, int er){   //test.java activity (class add)
         ContentValues contentvalues = new ContentValues();
         sqLiteDatabase=this.getWritableDatabase();
         TABLE_NAME=cname;

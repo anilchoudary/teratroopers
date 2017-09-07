@@ -67,8 +67,8 @@ public class ListFrag extends Fragment implements View.OnClickListener {
                         public boolean onLongClick(View view) {
                             str=view.getTag().toString();
                             new AlertDialog.Builder(getActivity())
-                                    .setTitle("Title")
-                                    .setMessage("Do you want to delete the class?")
+                                    .setTitle("Do you want to delete the class?")
+                                    .setMessage("You can not undo the action")
                                     .setIcon(android.R.drawable.ic_dialog_alert)
                                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
