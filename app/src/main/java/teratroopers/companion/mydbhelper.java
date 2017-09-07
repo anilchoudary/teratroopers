@@ -113,5 +113,17 @@ public class mydbhelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(classname,null,null);
         sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
     }
+    public void atd(int i,String cname,int sroll){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        int a=sroll;
+        if(a==sroll) {
+            sqLiteDatabase.execSQL("alter table " + cname + " add  date INTEGER");
+            a--;
+        }
+        sqLiteDatabase.execSQL("Update "+cname+" set date=" + i);
+        Log.i("table altered:","success");
+
+    }
+
 
 }

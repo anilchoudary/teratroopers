@@ -84,10 +84,17 @@ public class Attendance extends AppCompatActivity {
                             present++;
                             sroll++;
                             display();
+                            int a=sroll;
+
+                                mydb.atd( 1,cname,sroll);
+
+
+
                         }
                         else if(sroll==eroll){
                             present++;
                             sroll++;
+
                         }
                         else{
                             disbutton.setText("Attendance Complete");
@@ -110,10 +117,17 @@ public class Attendance extends AppCompatActivity {
                     public void onClick(View view) {
 
                         message+=String.valueOf(sroll)+"=a\n";
+                        int a=sroll;
                         if(sroll<eroll) {
                             absent++;
                             sroll++;
                             display();
+
+
+                                mydb.atd( 0,cname,sroll);
+
+
+
                         }
                         else if(sroll==eroll){
                             absent++;
