@@ -37,6 +37,8 @@ public class Attendance extends AppCompatActivity {
     int c=0;
     int roll;
     String message;
+
+    String date;
     String cname;
     public Context context;
 
@@ -81,6 +83,7 @@ public class Attendance extends AppCompatActivity {
     //present button click upon attendance completion increases present count(check)
 
    public void presentButton(){
+       Log.i("nagesh","deshpande");
         total=(eroll-sroll)+1;
        c=sroll;
         presbutton=(Button)findViewById(R.id.present);
@@ -95,7 +98,7 @@ public class Attendance extends AppCompatActivity {
                         {
                             try {
                                 SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
-                                String date = sdf.format(new Date());
+                                 date = sdf.format(new Date());
                                 date = "dt" + date;
                                 Log.i("our  date:", date);
                                 Log.i("cname:",cname);
@@ -188,7 +191,7 @@ public class Attendance extends AppCompatActivity {
     }
 
     public void viewbutton(){
-        view=(Button)findViewById(R.id.button5) ;
+        view=(Button)findViewById(R.id.arse) ;
         view.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -196,12 +199,15 @@ public class Attendance extends AppCompatActivity {
 
                        Cursor res = mydb.viewattendance(cname);
                         StringBuffer buffer = new StringBuffer();
+                     // buffer.append(date+":-\n");
                         while (res.moveToNext()) {
-                            buffer.append(res.getString(0));
+                            buffer.append(res.getString(0) +"=");
+                            buffer.append(res.getString(1) + "\t");
+                            buffer.append(res.getString(2) + "\n");
 
                             //buffer.append("Ending Roll :" + res.getString(2) + "\n");
                         }
-                        showmessage("Data", buffer.toString());
+                        showmessage(date, buffer.toString());
                     }
                 }
         );

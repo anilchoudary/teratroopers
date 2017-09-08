@@ -187,7 +187,7 @@ public class mydbhelper extends SQLiteOpenHelper {
         TABLE_NAME=cname;
         try {
             Log.i("in view","viewbefore");
-            Cursor result = sqLiteDatabase.rawQuery("Select " + date + " from " + TABLE_NAME, null);
+            Cursor result = sqLiteDatabase.rawQuery("Select "+COL1+", dt08092017, " + date + " from " + TABLE_NAME, null);
             return result;
         }
         catch (Exception e)
