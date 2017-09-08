@@ -112,13 +112,13 @@ public class Attendance extends AppCompatActivity {
                         }
                         if(sroll<eroll) {
                             Log.i("sroll",String.valueOf(sroll));
-                            mydb.insertattendance(cname,1,sroll);
+                            mydb.insertattendance(cname,1,sroll,eroll);
                             present++;
                             sroll++;
                             display();
                         }
                         else if(sroll==eroll){
-                            mydb.insertattendance(cname,1,sroll);
+                            mydb.insertattendance(cname,1,sroll,eroll);
                             present++;
                             sroll++;
 
@@ -136,7 +136,8 @@ public class Attendance extends AppCompatActivity {
     //TODO store values in database and provide back button on snackbar
 
     public void absentButton(){
-        total=(eroll-sroll)+1;
+       c=sroll;
+        //total=(eroll-sroll)+1;
         absbutton=(Button)findViewById(R.id.absent);
         absbutton.setOnClickListener(
                 new View.OnClickListener() {
@@ -144,7 +145,7 @@ public class Attendance extends AppCompatActivity {
                     public void onClick(View view) {
 
                         message+=String.valueOf(sroll)+"=a\n";
-                        if(c==0)
+                        if(c==sroll)
                         {
                             try {
                                 SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
@@ -159,12 +160,12 @@ public class Attendance extends AppCompatActivity {
                                // Log.i("catch","im in catch");
                                 Log.i("insert code", "inserting..");
                             }
-                            c++;
+
                         }
 
-                            int a=sroll;
+
                         if(sroll<eroll) {
-                            mydb.insertattendance(cname,0,sroll);
+                            mydb.insertattendance(cname,0,sroll,eroll);
                             absent++;
                             sroll++;
                             display();
@@ -176,7 +177,7 @@ public class Attendance extends AppCompatActivity {
 
                         }
                         else if(sroll==eroll){
-                            mydb.insertattendance(cname,0,sroll);
+                            mydb.insertattendance(cname,0,sroll,eroll);
 
                             absent++;
                             sroll++;
@@ -202,10 +203,10 @@ public class Attendance extends AppCompatActivity {
                      // buffer.append(date+":-\n");
                         while (res.moveToNext()) {
                             buffer.append(res.getString(0) +"=");
-                            buffer.append(res.getString(1) + "\t");
-                            buffer.append(res.getString(2) + "\n");
+                            buffer.append(res.getString(1) + "\n");
 
-                            //buffer.append("Ending Roll :" + res.getString(2) + "\n");
+
+                           //buffer.append("Ending Roll :" + res.getString(2) + "\n");
                         }
                         showmessage(date, buffer.toString());
                     }

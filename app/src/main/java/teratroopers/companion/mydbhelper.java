@@ -28,6 +28,8 @@ public class mydbhelper extends SQLiteOpenHelper {
     private static final String DATABASE_ALTER_TEAM_1 = "ALTER TABLE "
             + TABLE_NAME + " ADD COLUMN " + date + " string;";
     boolean k=false;
+    public  Cursor r;
+    public int j=0,s=0,w=0;
 
 
     public mydbhelper(Context context) {
@@ -126,19 +128,26 @@ public class mydbhelper extends SQLiteOpenHelper {
 
         TABLE_NAME=cname;
         date=name;
-
-        Cursor res = sqLiteDatabase.rawQuery("PRAGMA table_info("+cname+")",null);
+        try{
+        Cursor res = sqLiteDatabase.rawQuery("PRAGMA table_info("+TABLE_NAME+")",null);
         int i = res.getColumnIndex(name);
-        if(i==-1) {
+        Log.i("xy",String.valueOf(i));
 
-            Log.i("before altering", "success");
+            if (i == -1) {
 
-            sqLiteDatabase.execSQL("alter table " + cname + " add " + name + " INTEGER");
-            Log.i("after altering", "success");
+                Log.i("before altering", "success");
+
+                sqLiteDatabase.execSQL("alter table " + cname + " add " + name + " INTEGER");
+                Log.i("after altering", "success");
+            } else {
+                Log.i("col", "is already present");
+                j = 1;
+
+            }
         }
-        else
-        {
-            Log.i("col","is already present");
+        catch(Exception e){
+            j=1;
+            Log.i("xy",String.valueOf(j));
         }
 
 
@@ -164,19 +173,46 @@ public class mydbhelper extends SQLiteOpenHelper {
 
 
 
-    public void insertattendance(String cname,int a ,int roll){
+    public void insertattendance(String cname,int a ,int roll,int eroll){
+
         TABLE_NAME=cname;
        // ContentValues contentValues = new ContentValues();
         sqLiteDatabase=this.getWritableDatabase();
        // contentValues.put(date,a);
         try {
             Log.i("before inser","before");
-            sqLiteDatabase.execSQL("UPDATE " + TABLE_NAME + " SET " + date + "= " + a + " WHERE " + COL1 + " = " + roll);
-            Log.i("after inser","after insert");
+            if(j==0) {
+                sqLiteDatabase.execSQL("UPDATE " + TABLE_NAME + " SET " + date + "= " + a + " WHERE " + COL1 + " = " + roll);
+                Log.i("after inser", "after insert");
+            }
+            if(j==1){
+                if(s==0) {
+                    Log.i("in else", "else");
+
+                     r = sqLiteDatabase.rawQuery("select " + date + " from " + TABLE_NAME, null);
+                }
+                //Log.i("in else",String.valueOf(s));
+               // Log.i("in else",String.valueOf(roll));
+                r.moveToNext();
+                s = s + 1;
+
+                 w=Integer.parseInt(r.getString(0));
+                w = w+ a;
+                Log.i("in else","else");
+                sqLiteDatabase.execSQL("UPDATE " + TABLE_NAME + " SET " + date + "= " + w + " WHERE " + COL1 + " = " + roll);
+                Log.i("in else","else");
+                if(s==eroll)
+                {
+                    s=0;
+                }
+
+
+            }
         }
         catch (Exception e)
         {
             Log.i("error","error");
+
         }
 
 
@@ -187,7 +223,7 @@ public class mydbhelper extends SQLiteOpenHelper {
         TABLE_NAME=cname;
         try {
             Log.i("in view","viewbefore");
-            Cursor result = sqLiteDatabase.rawQuery("Select "+COL1+", dt08092017, " + date + " from " + TABLE_NAME, null);
+            Cursor result = sqLiteDatabase.rawQuery("Select "+COL1+", " + date +" from " + TABLE_NAME, null);
             return result;
         }
         catch (Exception e)
@@ -196,6 +232,7 @@ public class mydbhelper extends SQLiteOpenHelper {
         }
         return null;
     }
+
 
 
 
