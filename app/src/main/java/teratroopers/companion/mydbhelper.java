@@ -118,7 +118,7 @@ public class mydbhelper extends SQLiteOpenHelper {
     public void alterTable(String cname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         boolean k=isFieldExist(cname,"DATE");
-        if(k==true) {
+        if(k) {
             try{
             sqLiteDatabase.execSQL("alter table " + cname + " add date INTEGER");
             Log.i("table altered:", "success");}
