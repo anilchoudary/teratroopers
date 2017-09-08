@@ -113,12 +113,18 @@ public class mydbhelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(classname,null,null);
         sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
     }
+
+
     public void alterTable(String cname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        boolean k=isFieldExist(cname,"date");
-        if(k) {
-            sqLiteDatabase.execSQL("alter table " + cname + " add  date INTEGER");
-            Log.i("table altered:", "success");
+        boolean k=isFieldExist(cname,"DATE");
+        if(k==true) {
+            try{
+            sqLiteDatabase.execSQL("alter table " + cname + " add date INTEGER");
+            Log.i("table altered:", "success");}
+            catch (Exception e){
+                Log.i("Attendance taken:","finish");
+            }
         }
         else {
             Log.i("Attendance taken:","finish");
@@ -152,15 +158,18 @@ public class mydbhelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean isFieldExist(String cname, String colname) {
-        boolean k = true;
+    public boolean isFieldExist(String tableName, String fieldName)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("PRAGMA table_info("+cname+")",null);
-        int i = res.getColumnIndex(colname);
-        if(i == -1) {
-            k = false;
+        Cursor res = db.rawQuery("PRAGMA table_info("+tableName+")",null);
+        int i= res.getColumnIndex(fieldName);
+
+        if(i == -1)
+        {
+            Log.i("row not exist","yes");
+            return true;
         }
-        return k;
+       else return false;
     }
 
 

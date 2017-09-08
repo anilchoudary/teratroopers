@@ -81,6 +81,7 @@ public class Attendance extends AppCompatActivity {
                     public void onClick(View view) {
                         if(droll<eroll) {
                             if (droll == sroll) {
+                                Log.i("first:","droll=sroll");
                                 mydb.alterTable(cname);
                             }
                             mydb.registerData(cname, droll, 1);
