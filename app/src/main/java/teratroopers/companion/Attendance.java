@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.*;
 import android.view.View;
@@ -41,7 +42,7 @@ public class Attendance extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        view=(Button)findViewById(R.id.button5) ;
+        //view=(Button)findViewById(R.id.button5) ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
         context=this;
@@ -53,6 +54,9 @@ public class Attendance extends AppCompatActivity {
         display();
         presentButton();
         absentButton();
+        viewbutton();
+
+
     }
 
     public void getValues(String name) {
@@ -105,13 +109,13 @@ public class Attendance extends AppCompatActivity {
                         }
                         if(sroll<eroll) {
                             Log.i("sroll",String.valueOf(sroll));
-                            mydb.insertattendance(cname,1);
+                            mydb.insertattendance(cname,1,sroll);
                             present++;
                             sroll++;
                             display();
                         }
                         else if(sroll==eroll){
-                            mydb.insertattendance(cname,1);
+                            mydb.insertattendance(cname,1,sroll);
                             present++;
                             sroll++;
 
@@ -157,7 +161,7 @@ public class Attendance extends AppCompatActivity {
 
                             int a=sroll;
                         if(sroll<eroll) {
-                            mydb.insertattendance(cname,0);
+                            mydb.insertattendance(cname,0,sroll);
                             absent++;
                             sroll++;
                             display();
@@ -169,7 +173,7 @@ public class Attendance extends AppCompatActivity {
 
                         }
                         else if(sroll==eroll){
-                            mydb.insertattendance(cname,0);
+                            mydb.insertattendance(cname,0,sroll);
 
                             absent++;
                             sroll++;
@@ -184,14 +188,31 @@ public class Attendance extends AppCompatActivity {
     }
 
     public void viewbutton(){
+        view=(Button)findViewById(R.id.button5) ;
         view.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
+                       Cursor res = mydb.viewattendance(cname);
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append(res.getString(0));
+
+                            //buffer.append("Ending Roll :" + res.getString(2) + "\n");
+                        }
+                        showmessage("Data", buffer.toString());
                     }
                 }
         );
+    }
+    public void showmessage(String title,String Message) {
+        AlertDialog.Builder builder = new  AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+
     }
 }
 

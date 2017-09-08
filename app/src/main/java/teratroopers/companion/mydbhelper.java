@@ -126,22 +126,22 @@ public class mydbhelper extends SQLiteOpenHelper {
 
         TABLE_NAME=cname;
         date=name;
-       try
-        {
-            Cursor result = sqLiteDatabase.rawQuery("Select " + date +" from " + TABLE_NAME , null);
-        result.moveToNext();
-        int k=Integer.parseInt(result.getString(0));
-        Log.i("value of k:",String.valueOf(k));
-            Log.i("inserting..", "tryy..");
 
-        }
-        catch(Exception e) {
+        Cursor res = sqLiteDatabase.rawQuery("PRAGMA table_info("+cname+")",null);
+        int i = res.getColumnIndex(name);
+        if(i==-1) {
+
             Log.i("before altering", "success");
 
-                sqLiteDatabase.execSQL("alter table " + cname + " add " + name + " INTEGER");
-                Log.i("after altering", "success");
-
+            sqLiteDatabase.execSQL("alter table " + cname + " add " + name + " INTEGER");
+            Log.i("after altering", "success");
         }
+        else
+        {
+            Log.i("col","is already present");
+        }
+
+
         }
 
 
@@ -159,13 +159,20 @@ public class mydbhelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(classname,null,null);
         sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
     }
-    public void insertattendance(String cname,int a){
+
+
+
+
+
+    public void insertattendance(String cname,int a ,int roll){
         TABLE_NAME=cname;
-        ContentValues contentValues = new ContentValues();
+       // ContentValues contentValues = new ContentValues();
         sqLiteDatabase=this.getWritableDatabase();
-        contentValues.put(date,a);
+       // contentValues.put(date,a);
         try {
-            sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+            Log.i("before inser","before");
+            sqLiteDatabase.execSQL("UPDATE " + TABLE_NAME + " SET " + date + "= " + a + " WHERE " + COL1 + " = " + roll);
+            Log.i("after inser","after insert");
         }
         catch (Exception e)
         {
@@ -173,6 +180,21 @@ public class mydbhelper extends SQLiteOpenHelper {
         }
 
 
+    }
+    public Cursor viewattendance(String cname)
+    {
+        sqLiteDatabase=this.getWritableDatabase();
+        TABLE_NAME=cname;
+        try {
+            Log.i("in view","viewbefore");
+            Cursor result = sqLiteDatabase.rawQuery("Select " + date + " from " + TABLE_NAME, null);
+            return result;
+        }
+        catch (Exception e)
+        {
+            Log.i("im in exception","exception");
+        }
+        return null;
     }
 
 
