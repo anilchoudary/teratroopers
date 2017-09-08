@@ -10,7 +10,7 @@ import android.util.Log;
 /**
  * Created by Prashanth on 31-08-2017.
  */
-//04/09 modified
+//08/09 modified
 
 public class mydbhelper extends SQLiteOpenHelper {
     public static final String DATABSE_NAME="student.sqLiteDatabase";
@@ -19,8 +19,6 @@ public class mydbhelper extends SQLiteOpenHelper {
     public static final String COL1="rollnos";
     public static final String COL2="studnames";
     public static final String CTCOL1="classname";
-    public static final String COL3="roll2";
-    public static final String COL4="date";
     boolean k=false;
 
 
