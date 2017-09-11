@@ -20,6 +20,7 @@ public class mydbhelper extends SQLiteOpenHelper {
     public static final String COL2="studnames";
     public static final String CTCOL1="classname";
     boolean k=false;
+    boolean p;
 
 
     public mydbhelper(Context context) {
@@ -119,12 +120,16 @@ public class mydbhelper extends SQLiteOpenHelper {
         if(k) {
             try{
             sqLiteDatabase.execSQL("alter table " + cname + " add date INTEGER");
-            Log.i("table altered:", "success");}
+            Log.i("table altered:", "success");
+                 p=true;
+            }
             catch (Exception e){
+                p=false;
                 Log.i("Attendance taken:","finish");
             }
         }
         else {
+            p=false;
             Log.i("Attendance taken:","finish");
         }
     }
@@ -149,10 +154,13 @@ public class mydbhelper extends SQLiteOpenHelper {
 
     public void registerData(String cname,int droll,int i){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        ContentValues contentvalues=new ContentValues();
-        contentvalues.put("date",i);
+        if(p==true) {
             sqLiteDatabase.execSQL("UPDATE " + cname + " SET DATE = " + i + " WHERE " + COL1 + " = " + droll);
             Log.i("update complete:", "success");
+        }
+        else{
+            sqLiteDatabase.execSQL("UPDATE " + cname + " SET DATE = Date "+ "+"+i + " WHERE " + COL1 + " = " + droll);
+        }
 
     }
 
