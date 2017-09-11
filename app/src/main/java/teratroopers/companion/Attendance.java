@@ -142,10 +142,12 @@ public class Attendance extends AppCompatActivity {
                     public void onClick(View view) {
                         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
                         date = sdf.format(new Date());
+                        date="dt"+date;
                         Cursor res=mydb.retrievedatatodisplayattendance(date,cname);
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
 
+                           // buffer.append(res.getString(0)+"\n");
                             buffer.append(res.getString(0)+"=");
                             buffer.append(res.getString(1) + "\n");
                             //buffer.append("Ending Roll :" + res.getString(2) + "\n");
