@@ -114,12 +114,12 @@ public class mydbhelper extends SQLiteOpenHelper {
     }
 
 
-    public void alterTable(String cname){
+    public void alterTable(String date,String cname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         boolean k=isFieldExist(cname,"DATE");
         if(k) {
             try{
-            sqLiteDatabase.execSQL("alter table " + cname + " add date INTEGER");
+            sqLiteDatabase.execSQL("alter table " + cname + " add "+date+" INTEGER");
             Log.i("table altered:", "success");
                  p=true;
             }
@@ -144,22 +144,20 @@ public class mydbhelper extends SQLiteOpenHelper {
         Log.i("after success"," is no use");
     }*/
 
-    public Cursor retrievedatatodisplayattendance(String classname){
+    public Cursor retrievedatatodisplayattendance(String date,String classname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        String sqlquery;
-        sqlquery="select rollnos,date from "+classname;
-        Cursor result = sqLiteDatabase.rawQuery(sqlquery,null);
+        Cursor result = sqLiteDatabase.rawQuery("Select "+COL1+"," + date +" from " + classname,null);
         return result;
     }
 
-    public void registerData(String cname,int droll,int i){
+    public void registerData(String date,String cname,int droll,int i){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         if(p==true) {
-            sqLiteDatabase.execSQL("UPDATE " + cname + " SET DATE = " + i + " WHERE " + COL1 + " = " + droll);
+            sqLiteDatabase.execSQL("UPDATE " + cname + " SET "+date+" = "+i+ " WHERE " + COL1 + " = " + droll);
             Log.i("update complete:", "success");
         }
         else{
-            sqLiteDatabase.execSQL("UPDATE " + cname + " SET DATE = Date "+ "+"+i + " WHERE " + COL1 + " = " + droll);
+            sqLiteDatabase.execSQL("UPDATE " + cname + " SET "+date+" = "+date+ " + "+i + " WHERE " + COL1 + " = " + droll);
         }
 
     }

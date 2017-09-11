@@ -22,6 +22,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Attendance extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class Attendance extends AppCompatActivity {
     int total;
     int droll;
     int a;
+    String date;
     String cname;
     public Context context;
 
@@ -79,17 +82,20 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+                        date = sdf.format(new Date());
+                        date = "dt" + date;
                         if(droll<eroll) {
                             if (droll == sroll) {
                                 Log.i("first:","droll=sroll");
-                                mydb.alterTable(cname);
+                                mydb.alterTable(date,cname);
                             }
-                            mydb.registerData(cname, droll, 1);
+                            mydb.registerData(date,cname, droll, 1);
                             droll++;
                             display();
                         }
                         else if(droll==eroll){
-                            mydb.registerData(cname, droll, 1);
+                            mydb.registerData(date,cname, droll, 1);
                             disbutton.setText("Attendance complete");
                             Snackbar.make(view,"Attendance Complete",Snackbar.LENGTH_LONG).show();
                         }
@@ -107,16 +113,19 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+                        date = sdf.format(new Date());
+                        date="dt"+date;
                         if(droll<eroll) {
                             if (droll == sroll) {
-                                mydb.alterTable(cname);
+                                mydb.alterTable(date,cname);
                             }
-                            mydb.registerData(cname, droll, 0);
+                            mydb.registerData(date,cname,droll,0);
                             droll++;
                             display();
                         }
                         else if(droll==eroll){
-                            mydb.registerData(cname, droll, 0);
+                            mydb.registerData(date,cname, droll, 0);
                             disbutton.setText("Attendance complete");
                             Snackbar.make(view,"Attendance Complete",Snackbar.LENGTH_LONG).show();
                         }
@@ -131,9 +140,12 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Cursor res=mydb.retrievedatatodisplayattendance(cname);
+                        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+                        date = sdf.format(new Date());
+                        Cursor res=mydb.retrievedatatodisplayattendance(date,cname);
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
+
                             buffer.append(res.getString(0)+"=");
                             buffer.append(res.getString(1) + "\n");
                             //buffer.append("Ending Roll :" + res.getString(2) + "\n");
