@@ -10,7 +10,7 @@ import android.util.Log;
 /**
  * Created by Prashanth on 31-08-2017.
  */
-//08/09 modified
+//23/09 modified (90% finished)
 
 public class mydbhelper extends SQLiteOpenHelper {
     public static final String DATABSE_NAME="student.sqLiteDatabase";
@@ -44,11 +44,6 @@ public class mydbhelper extends SQLiteOpenHelper {
     public boolean insertData( int sr, int er) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentvalues = new ContentValues();
-
-        //contentvalues.put(COL1, classname);
-        //contentvalues.put(COL2, roll1);
-        //contentvalues.put(COL3, roll2);
-
         for(int i=sr;i<=er;i++) {
             contentvalues.put(COL1, i);
             long result = sqLiteDatabase.insert(TABLE_NAME, null, contentvalues);
@@ -108,41 +103,26 @@ public class mydbhelper extends SQLiteOpenHelper {
 
     public void deleteclass(String classname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        //sqLiteDatabase.execSQL("delete TABLE IF EXISTS " + classname);
         sqLiteDatabase.delete(classname,null,null);
         sqLiteDatabase.delete(cTABLE_NAME,CTCOL1+"="+"'"+classname+"'",null);
     }
-
 
     public void alterTable(String date,String cname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         boolean k=isFieldExist(cname,"DATE");
         if(k) {
             try{
-            sqLiteDatabase.execSQL("alter table " + cname + " add "+date+" INTEGER");
-            Log.i("table altered:", "success");
-                 p=true;
+                sqLiteDatabase.execSQL("alter table " + cname + " add "+date+" INTEGER");
+                p=true;
             }
             catch (Exception e){
                 p=false;
-                Log.i("Attendance taken:","finish");
             }
         }
         else {
             p=false;
-            Log.i("Attendance taken:","finish");
         }
     }
-
-
-   /* public void atdinsert(String classname){
-        ContentValues contentvalues = new ContentValues();
-        sqLiteDatabase=this.getWritableDatabase();
-        contentvalues.put(COL4,1);
-        Log.i("insertion success","not biscuit");
-        sqLiteDatabase.insert(classname,null,contentvalues);
-        Log.i("after success"," is no use");
-    }*/
 
     public Cursor retrievedatatodisplayattendance(String date,String classname){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
@@ -170,7 +150,6 @@ public class mydbhelper extends SQLiteOpenHelper {
 
         if(i == -1)
         {
-            Log.i("row not exist","yes");
             return true;
         }
        else return false;

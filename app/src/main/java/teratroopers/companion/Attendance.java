@@ -52,7 +52,7 @@ public class Attendance extends AppCompatActivity {
         display();
         presentButton();
         absentButton();
-        buttonclickfordisplayingvalues();
+       // buttonclickfordisplayingvalues();
     }
 
     public void getValues(String name) {
@@ -69,7 +69,7 @@ public class Attendance extends AppCompatActivity {
     }
     public void display(){
         String number=Integer.toString(droll);
-        disbutton.setBackgroundColor(Color.BLUE);
+        disbutton.setBackgroundColor(Color.CYAN);
         disbutton.setClickable(false);
         disbutton.setText(number);
     }
@@ -78,6 +78,7 @@ public class Attendance extends AppCompatActivity {
    public void presentButton(){
         total=(eroll-sroll)+1;
         presbutton=(Button)findViewById(R.id.present);
+        presbutton.setBackgroundColor(Color.BLUE);
         presbutton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -109,6 +110,7 @@ public class Attendance extends AppCompatActivity {
         a=sroll;
         total=(eroll-sroll)+1;
         absbutton=(Button)findViewById(R.id.absent);
+        absbutton.setBackgroundColor(Color.BLUE);
         absbutton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -134,38 +136,7 @@ public class Attendance extends AppCompatActivity {
         );
     }
 
-    public void buttonclickfordisplayingvalues(){
-        Button butt = (Button)findViewById(R.id.arse);
-        butt.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
-                        date = sdf.format(new Date());
-                        date="dt"+date;
-                        Cursor res=mydb.retrievedatatodisplayattendance(date,cname);
-                        StringBuffer buffer = new StringBuffer();
-                        while (res.moveToNext()) {
 
-                           // buffer.append(res.getString(0)+"\n");
-                            buffer.append(res.getString(0)+"=");
-                            buffer.append(res.getString(1) + "\n");
-                            //buffer.append("Ending Roll :" + res.getString(2) + "\n");
-                        }
-                        showmessage("Data", buffer.toString());
-                    }
-                }
-        );
-    }
-
-    public void showmessage(String title,String Message) {
-        AlertDialog.Builder builder = new  AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-
-    }
 
 }
 

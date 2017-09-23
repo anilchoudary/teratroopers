@@ -62,7 +62,7 @@ public class ListFrag extends Fragment implements View.OnClickListener {
             b1.setText(res.getString(0));
             b1.setTag(res.getString(0));
             b1.setElevation(3.8f);
-            b1.setBackgroundResource(R.drawable.butback);
+            b1.setBackgroundResource(R.drawable.backbutt);
             b1.setLayoutParams(lp1);
             b1.setGravity(Gravity.CENTER);
             linearLayout.addView(b1);
