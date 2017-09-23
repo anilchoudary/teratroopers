@@ -25,6 +25,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.view.HapticFeedbackConstants.CONTEXT_CLICK;
+
 public class Attendance extends AppCompatActivity {
 
     mydbhelper mydb;
@@ -47,12 +49,10 @@ public class Attendance extends AppCompatActivity {
         mydb =new mydbhelper(this);
         Bundle b = getIntent().getExtras();
         cname = b.getString("name");
-        //goToClass gtc=new goToClass(cname);
         getValues(cname);
         display();
         presentButton();
         absentButton();
-       // buttonclickfordisplayingvalues();
     }
 
     public void getValues(String name) {
@@ -62,10 +62,8 @@ public class Attendance extends AppCompatActivity {
         res.moveToNext();
         sroll = Integer.parseInt(res.getString(0));
         droll=sroll;
-        Log.i("sroll",String.valueOf(sroll));
         res.moveToLast();
         eroll = Integer.parseInt(res.getString(0));
-        Log.i("sroll",String.valueOf(eroll));
     }
     public void display(){
         String number=Integer.toString(droll);
@@ -83,6 +81,7 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.performHapticFeedback(CONTEXT_CLICK);
                         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
                         date = sdf.format(new Date());
                         date = "dt" + date;
@@ -107,7 +106,7 @@ public class Attendance extends AppCompatActivity {
 
     //TODO store values in database and provide back button on snackbar (partially complete)
     public void absentButton(){
-        a=sroll;
+       // a=sroll;
         total=(eroll-sroll)+1;
         absbutton=(Button)findViewById(R.id.absent);
         absbutton.setBackgroundColor(Color.BLUE);
@@ -115,6 +114,7 @@ public class Attendance extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.performHapticFeedback(CONTEXT_CLICK);
                         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
                         date = sdf.format(new Date());
                         date="dt"+date;
