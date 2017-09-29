@@ -73,7 +73,7 @@ public class register extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        cname=v.getTag().toString();
+        cname = v.getTag().toString();
         linearLayout.setVisibility(View.INVISIBLE);
         linearLayout2.setVisibility(View.VISIBLE);
         viewattendance();
@@ -117,7 +117,8 @@ public class register extends Fragment implements View.OnClickListener {
         }
         date = "dt" + d + m + year;
 
-        Cursor res = mydb.retrievedatatodisplayattendance(date, cname);
+        Cursor res = mydb.retrievedatatodisplayattendance(date, cname);//act
+
         StringBuffer buffer = new StringBuffer();
         while (res.moveToNext()) {
             buffer.append(res.getString(0) + "=");

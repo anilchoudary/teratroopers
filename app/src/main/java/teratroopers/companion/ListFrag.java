@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class ListFrag extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
@@ -66,19 +67,6 @@ public class ListFrag extends Fragment implements View.OnClickListener {
             b1.setLayoutParams(lp1);
             b1.setGravity(Gravity.CENTER);
             linearLayout.addView(b1);
-           //here
-
-          /*  ImageView divider1 = new ImageView(getActivity());
-
-            lp2.setMargins(20, 0, 20, 0);
-            divider1.setLayoutParams(lp2);
-            divider1.setElevation(0.5f);
-            divider1.setBackgroundColor(Color.DKGRAY);
-
-            linearLayout.addView(divider1);
-            */
-
-            //to here
             b1.setOnClickListener(ListFrag.this);
             b1.setOnLongClickListener(
                     new View.OnLongClickListener() {
@@ -86,13 +74,13 @@ public class ListFrag extends Fragment implements View.OnClickListener {
                         public boolean onLongClick(View view) {
                             str=view.getTag().toString();
                             new AlertDialog.Builder(getActivity())
-                                    .setTitle("Do you want to delete the class?")
+                                    .setTitle("Do you want to delete the class "+cname+"  ?")
                                     .setMessage("You can not undo the action")
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
                                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                                         public void onClick(DialogInterface dialog, int whichButton) {
-                                                mydb.deleteclass(str);
+                                            Toast.makeText(getContext(),cname+" is deleted from the records",Toast.LENGTH_SHORT).show();
+                                            mydb.deleteclass(str);
                                         }})
                                     .setNegativeButton(android.R.string.no, null).show();
                             return true;

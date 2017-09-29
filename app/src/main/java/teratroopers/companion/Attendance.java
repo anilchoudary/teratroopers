@@ -67,7 +67,7 @@ public class Attendance extends AppCompatActivity {
     }
     public void display(){
         String number=Integer.toString(droll);
-        disbutton.setBackgroundColor(Color.CYAN);
+        //disbutton.setBackgroundColor(Color.CYAN);
         disbutton.setClickable(false);
         disbutton.setText(number);
     }
@@ -76,7 +76,7 @@ public class Attendance extends AppCompatActivity {
    public void presentButton(){
         total=(eroll-sroll)+1;
         presbutton=(Button)findViewById(R.id.present);
-        presbutton.setBackgroundColor(Color.BLUE);
+        //presbutton.setBackgroundColor(Color.BLUE);
         presbutton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -109,7 +109,7 @@ public class Attendance extends AppCompatActivity {
        // a=sroll;
         total=(eroll-sroll)+1;
         absbutton=(Button)findViewById(R.id.absent);
-        absbutton.setBackgroundColor(Color.BLUE);
+        //absbutton.setBackgroundColor(Color.BLUE);
         absbutton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
